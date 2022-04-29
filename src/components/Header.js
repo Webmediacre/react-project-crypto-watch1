@@ -6,13 +6,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // AppBar from https://v4.mui.com/components/app-bar/#app-bar
-import { AppBar, Container, Toolbar, Typography, Select, MenuItem, makeStyles, createTheme, ThemeProvider } from '@material-ui/core'; 
+import { AppBar, Container, Toolbar, Typography, Select, MenuItem, makeStyles, createTheme, ThemeProvider, Box, Grid, Link } from '@material-ui/core'; 
 
 // import state CryptoState from CrytoContext
 import { CryptoState } from '../CrytoContext';  
 
 import ButtonLinks from './ButtonLinks'; 
 
+import Marquee from './Marquee';
 
 const useStyles = makeStyles(() => ({  
     title: {
@@ -46,13 +47,13 @@ const Header = () => {
     return (
 
     <ThemeProvider theme={darkTheme}>
-           
+
         <AppBar color='transparent' position='static'> 
             <Container>  
                 <Toolbar>     
                     <Typography onClick={() => navigate('/')} className={classes.title} variant='h6'> Crypto Watch </Typography>
                     <ButtonLinks />
-                    <Select defaultValue={'GBP'} variant='outlined' style={{ color: '#f7931a', width: 100, height: 40, marginRight: 15}} value={currency} onChange={(e) => setCurrency(e.target.value)}>   
+                    <Select defaultValue={'GBP'} variant='outlined' style={{ display: 'none', color: '#f7931a', width: 100, height: 40, marginRight: 15}} value={currency} onChange={(e) => setCurrency(e.target.value)}>   
                         <MenuItem value={'GBP'}> GBP </MenuItem>
                         <MenuItem value={'EUR'}> EUR </MenuItem>   
                         <MenuItem value={'USD'}> USD </MenuItem> 
@@ -60,6 +61,47 @@ const Header = () => {
                 </Toolbar>
             </Container>
         </AppBar>
+
+ 
+        <header style={{ display: 'column', width: '100%', fontFamily: 'Montserrat', }}> 
+
+            <Box px={{ xs: 1, sm: 10 }} py={{ xs: 5, sm: 1 }}  bgcolor='#f7931a' color='white'>
+
+                <Container maxWidth="lg" > 
+
+                    <Grid container spacing={5} style={{display: 'column', justifyContent: 'right'}}>
+
+                        <Grid item xs={1} sm={6} > 
+                            <Marquee />  
+                        </Grid>
+
+                        <Grid item xs={1} sm={4}> 
+                            <Box> 
+                            <p style={{marginTop: 8, justifyContent: 'right'}}>  Select the dropdown and change crytocurrency </p>
+                            
+                            </Box>
+                        </Grid>
+                        
+                        <Grid item xs={12} sm={2}> 
+                            <Box> 
+                            <Select defaultValue={'GBP'} variant='outlined' style={{ color: '#fff', width: 100, height: 40, marginRight: 15}} value={currency} onChange={(e) => setCurrency(e.target.value)}>   
+                                <MenuItem value={'GBP'}> GBP </MenuItem>
+                                <MenuItem value={'EUR'}> EUR </MenuItem>   
+                                <MenuItem value={'USD'}> USD </MenuItem> 
+                            </Select> 
+                            </Box>
+                        </Grid>
+
+                        
+                    </Grid>
+
+
+                </Container>
+
+            </Box>
+
+        </header>
+
 
     </ThemeProvider>   
 

@@ -13,7 +13,7 @@ import { CryptoState } from '../CrytoContext';
 import { Container, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 
 const CoinPage = () => {
-
+ 
   const { id } = useParams();
   const [ coin, setCoin ] = useState();
 
@@ -83,7 +83,7 @@ const CoinPage = () => {
 
   const classes = useStyles();
 
-  if (!coin) return <LinearProgress style={{ backgroundColor: "#f7931a" }} thickness={0.5} />; 
+  if (!coin) return <LinearProgress style={{ backgroundColor: "#f7931a" }} thickness={0.3} />; 
 
   return (
     
@@ -105,35 +105,55 @@ const CoinPage = () => {
         <div className={classes.marketData}>
 
           <span style={{ display: 'flex' }}>
-            <Typography variant='h6' className={classes.heading}>
+            <Typography variant='h7' className={classes.heading}>
               Rank:
             </Typography>
             &nbsp; &nbsp;
-            <Typography variant='h6' style={{ fontFamily: 'Montserrat', }}>
+            <Typography variant='h7' style={{ fontFamily: 'Montserrat', }}>
               {numberWithCommas(coin.market_cap_rank)}
             </Typography>
           </span>
 
           <span style={{ display: 'flex' }}>
-            <Typography variant='h6' className={classes.heading}>
+            <Typography variant='h7' className={classes.heading}>
               Current Price:
             </Typography>
             &nbsp; &nbsp;
-            <Typography variant='h6' style={{ fontFamily: 'Montserrat', }} >
+            <Typography variant='h7' style={{ fontFamily: 'Montserrat', }} >
               {symbol}{''}
               {numberWithCommas( coin.market_data.current_price[currency.toLowerCase()] )}
             </Typography>
           </span>
 
           <span style={{ display: 'flex' }}>
-            <Typography variant='h6' className={classes.heading}>
+            <Typography variant='h7' className={classes.heading}>
               Market Cap:
             </Typography>
             &nbsp; &nbsp;
-            <Typography variant='h6' style={{ fontFamily: 'Montserrat', }} >
+            <Typography variant='h7' style={{ fontFamily: 'Montserrat', }} >
               {symbol}{' '} {numberWithCommas(coin.market_data.market_cap[currency.toLowerCase()].toString().slice(0, -6))}M
             </Typography>
           </span>
+
+          <span style={{ display: 'flex' }}>
+            <Typography variant='h7' className={classes.heading}>
+              Liquidity Score:
+            </Typography>
+            &nbsp; &nbsp;
+            <Typography variant='h7' style={{ fontFamily: 'Montserrat', }} >
+              {coin.liquidity_score}  
+            </Typography> 
+          </span>
+
+          <span style={{ display: 'flex' }}>
+            <Typography variant='h7' className={classes.heading}>
+              Homepage:
+            </Typography>
+            &nbsp; &nbsp;
+            <Typography variant='h7' style={{ fontFamily: 'Montserrat', }} >
+              <a href={coin.links.homepage}> {coin.links.homepage} </a>  
+            </Typography> 
+          </span> 
 
         </div>
 
@@ -148,9 +168,11 @@ const CoinPage = () => {
       <coingecko-coin-compare-chart-widget coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" locale="en"></coingecko-coin-compare-chart-widget> 
     </div>
     
-  </Container> 
+    <br />
+    <br />
+    <br />
 
-  
+  </Container>
 
   )
 

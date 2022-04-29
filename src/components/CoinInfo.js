@@ -70,9 +70,17 @@ const CoinInfo = ({ coin }) => {
 
       <div className={classes.container}>
         {!historicData | flag===false ? (
-          <CircularProgress style={{ color: '#f7931a' }} size={250} thickness={0.5} />
+          <CircularProgress style={{ color: '#f7931a' }} size={250} thickness={0.3} />
         ) : (
+
           <>
+
+          <h1 style={{ fontFamily: 'Montserrat' }}> Historical Line Chart </h1>
+          
+          <br />
+          <br />
+          <br />
+ 
             <Line
               data={{
                 labels: historicData.map((coin) => {
@@ -91,6 +99,7 @@ const CoinInfo = ({ coin }) => {
               }} 
               options={{ elements: { point: { radius: 1, }, }, }}
             />
+
             <div style={{ display: 'flex', marginTop: 20, justifyContent: 'space-around', width: '100%', }} >
               {chartDays.map((day) => (
                 <SelectButton key={day.value} onClick={() => {setDays(day.value); setflag(false); }} selected={day.value === days} >
@@ -98,8 +107,11 @@ const CoinInfo = ({ coin }) => {
                 </SelectButton>
               ))}
             </div>
+
           </>
+
         )}
+
       </div>
 
     </ThemeProvider>

@@ -15,15 +15,15 @@ const useStyles = makeStyles(() => ({
         backgroundImage: 'url(./banner2.jpg)', 
     },
     bannerContent: {
-        height: 250,
+        height: 190,
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: 20,
+        paddingTop: 5,
         justifyContent: 'space-around',
     },
     tagline: {
         display: 'flex',
-        height: '10%',
+        height: '5%',
         flexDirection: 'column',
         justifyContent: 'center',
         textAlign: 'center', 
@@ -38,14 +38,11 @@ const Banner = () => {
 
         <div className={classes.banner}>
 
-            <Marquee />  
-
             <Container className={classes.bannerContent}>
-                <div className={classes.tagline}> 
                 
-                    <Typography variant='subtitle2' style={{color: 'darkgrey', textTransform: 'capitalize', fontFamily: 'Montserrat'}}>
+                <div className={classes.tagline}> 
+                    <Typography variant='subtitle2' style={{ display: 'none', color: 'darkgrey', textTransform: 'capitalize', fontFamily: 'Montserrat'}}>
                         Get all the info regarding your favorite Cryptocurrencies. 
-                        
                     </Typography>
                     <Typography variant='h4' style={{ fontWeight: 'bold', marginBottom: 0, fontFamily: 'Montserrat'}}>
                         Trending Cryptocurrencies
